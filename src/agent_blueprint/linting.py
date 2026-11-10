@@ -474,6 +474,17 @@ def _lint_contract_usage(spec: BlueprintSpec) -> list[LintFinding]:
         consumed_state_fields.update(spec.output.schema_def.keys())
     for contract in spec.contracts.nodes.values():
         consumed_state_fields.update(contract.requires)
+    # Runtime low-confidence escalation hard-reads updates["confidence"] when
+    # both on_low_confidence and confidence_threshold are set (see generated
+    # _apply_low_confidence_escalation). Count that as consumption so lint does
+    # not nudge authors to drop a field the guarantee depends on.
+    escalation = spec.policies.escalation if spec.policies else None
+    if (
+        escalation is not None
+        and escalation.on_low_confidence
+        and escalation.confidence_threshold is not None
+    ):
+        consumed_state_fields.add("confidence")
 
     for node_id, contract in spec.contracts.nodes.items():
         for field_name in contract.produces:

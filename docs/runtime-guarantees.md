@@ -460,6 +460,9 @@ contracts:
       output_contract: route_payload
 ```
 
+`abp lint` treats `confidence` as used when the escalation target and threshold
+are configured, even if no route or output contract reads the field directly.
+
 Real-life use case:
 
 - a normal support request routes automatically

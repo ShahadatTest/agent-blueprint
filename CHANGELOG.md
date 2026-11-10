@@ -27,6 +27,9 @@ The format is based on Keep a Changelog, and this project aims to follow Semanti
 
 ### Fixed
 
+- `abp lint` no longer flags `confidence` as unused when a low-confidence
+  escalation policy reads it.
+
 - **Behavior change (fail-loud):** tool-usage policy violations
   (`max_calls_per_node`, `max_calls_per_run`, `require_explicit_arguments`)
   now stop the run, as documented. Both ReAct loops used to catch the error
