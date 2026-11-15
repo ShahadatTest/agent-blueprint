@@ -475,6 +475,11 @@ def _lint_contract_usage(spec: BlueprintSpec) -> list[LintFinding]:
     for contract in spec.contracts.nodes.values():
         consumed_state_fields.update(contract.requires)
 
+    if spec.policies is not None:
+        escalation = spec.policies.escalation
+        if escalation.on_low_confidence is not None and escalation.confidence_threshold is not None:
+            consumed_state_fields.add("confidence")
+
     for node_id, contract in spec.contracts.nodes.items():
         for field_name in contract.produces:
             if field_name not in consumed_state_fields:

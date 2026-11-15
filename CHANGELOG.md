@@ -6,6 +6,10 @@ The format is based on Keep a Changelog, and this project aims to follow Semanti
 
 ## [Unreleased]
 
+### Fixed
+
+- Count confidence read by an active low-confidence escalation policy as consumed when linting produced state fields.
+
 ### Security
 
 - **Breaking:** the deployed `/invoke` endpoint now authenticates callers and

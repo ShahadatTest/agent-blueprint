@@ -621,6 +621,8 @@ See [Memory & Checkpointing](docs/memory.md), [Sandbox](docs/sandbox.md) and [Ob
 
 ## CLI reference
 
+The `unused-produced-field` lint check treats `confidence` as consumed when low-confidence escalation has both `on_low_confidence` and `confidence_threshold`. Other fields still require a route, output or node requirement consumer.
+
 | Command | Description |
 |---|---|
 | `abp init` | Scaffold a blueprint YAML (`--template=blueprint`) or an agent-spec markdown for Codex/Claude Code (`--template=spec`) |
